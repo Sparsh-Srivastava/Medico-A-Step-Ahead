@@ -1,0 +1,46 @@
+POST http://localhost:5000/register
+content-type : application/json
+
+{
+    "name": "N'Golo Kante",
+    "email": "k@chelsea.com",
+    "password": "iam07c",
+    "password2": "iam07c",
+    "city": "chennai"
+}
+
+###
+
+POST http://localhost:5000/registerDoc
+Content-Type: application/json
+
+{
+    "name": "N'Golo Kante",
+    "email": "k2@chelsea.com",
+    "password": "iam07c",
+    "password2": "iam07c",
+    "city": "",
+    "special": "Cardiologist",
+    "bio": "I am a very well educate doctor",
+    "city": "France"
+}
+
+###
+
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "email": "k@chelsea.com",
+    "password": "iam07c"
+}
+
+###
+
+POST http://localhost:5000/loginDoc
+Content-Type: application/json
+
+{
+    "email": "k2@chelsea.com",
+    "password": "iam07c"
+}

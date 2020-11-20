@@ -1,17 +1,26 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const db = require('./config/keys.js');
+const passport = require("passport");
+
+const users = require("./routes/api/users");
+
 const app = express();
-const indexRoute = require("./routes/index");
+// Bodyparser middleware
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
+app.use(bodyParser.json());
 
-// Database Connection
-require("./config/dbConfig");
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
+// Routes
+app.use("", users);
 
-// Port
-const PORT = process.env.PORT || 5000;
-
-app.use("/", indexRoute);
-
-app.listen(PORT, (req, res) => {
-  console.log("SERVER LISTENING ON PORT " + PORT);
-});
-
-module.exports = app;
+const port = process.env.PORT || 5000; // process.env.port is Heroku's port if you choose to deploy the app there
+app.listen(port, () => console.log(`Herbie is fully loaded on port ${port} !`));
